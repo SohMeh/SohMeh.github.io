@@ -1,0 +1,268 @@
+%-------------------------------------------------------------------------------
+%  Sohum Mehta — Resume
+%
+%  Rebuilt to match the original template's structure and typography exactly:
+%  0.5in margins, \LARGE bold name, \large\scshape section heads with a
+%  full-width rule, and one-line entry headers of the form
+%
+%      Organization | Position                                        Dates
+%        - bullet
+%
+%  Unlike the template's source (which pinned every element to hard-coded TikZ
+%  coordinates), this is a FLOWING document: add, delete or reorder any entry
+%  and everything below reflows on its own.
+%
+%  Compile:  pdflatex SohumMehta_Resume.tex
+%
+%  Cheat sheet
+%  -----------
+%  \resumeEntry{Organization}{Position or tech stack}{Dates}   <- one-line header
+%  \resumeEdu{School}{Location}{Degree / program}{Dates}       <- two-line header
+%  \resumePub{Paper title}{Venue}                              <- title + venue
+%  \resumeItem{A bullet}            (keep to 3 per entry, 1 line each)
+%  \resumeSkill{Category}{items}
+%
+%  Entry groups : \resumeSubHeadingListStart ... \resumeSubHeadingListEnd
+%  Bullet groups: \resumeItemListStart       ... \resumeItemListEnd
+%-------------------------------------------------------------------------------
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\usepackage{etoolbox}
+\input{glyphtounicode}
+
+% ---- Interword spacing -------------------------------------------------------
+% Latin Modern's natural word space is 0.333em; this nudges it a hair wider.
+% Set in em, so it scales correctly at every font size. Lower to 0.333em for
+% the stock look, or raise toward 0.38em for more air between words.
+\newcommand{\wordspace}{0.355em}
+\apptocmd{\selectfont}{\spaceskip=\wordspace plus 0.18em minus 0.115em}{}{}
+
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\setlength{\footskip}{5pt}
+
+% ---- Page geometry: 0.5in margins all round (36bp, as in the template) --------
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1.0in}
+\addtolength{\topmargin}{-0.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% ---- Vertical rhythm: the two knobs worth touching ---------------------------
+\newcommand{\entrysep}{5pt}   % gap between entries
+\newcommand{\linesep}{1.5pt}  % gap between publication / skill lines
+
+% ---- Section heading: \large small-caps + full-width rule --------------------
+\titleformat{\section}{
+  \vspace{-6pt}\scshape\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-6pt}]
+
+% Make the PDF text machine-readable (ATS-friendly)
+\pdfgentounicode=1
+
+%-------------------------- CUSTOM COMMANDS -----------------------------------
+% A bulleted achievement line. Keep each one to a single printed line.
+\newcommand{\resumeItem}[1]{%
+  \item\small{#1 \vspace{-3pt}}
+}
+
+% One-line entry header:  Organization | Position ................... Dates
+\newcommand{\resumeEntry}[3]{%
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} $|$ \textit{\small #2} & \textit{\small #3} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+% Two-line education header: School .. Location / Degree .. Dates
+\newcommand{\resumeEdu}[4]{%
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small #3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+% Publication line: bold title (wraps if long) ............... venue, flush right
+\newcommand{\resumePub}[2]{%
+  \item
+    \begin{tabularx}{0.97\textwidth}[t]{@{}>{\raggedright\arraybackslash}X@{\hspace{1.5em}}r@{}}
+      \small\textbf{#1} & #2 \\
+    \end{tabularx}\vspace{-2pt}
+}
+
+% Skills line
+\newcommand{\resumeSkill}[2]{%
+  \item\small{\textbf{#1}: #2}
+}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}, itemsep=\entrysep, topsep=3pt]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeLineListStart}{\begin{itemize}[leftmargin=0.15in, label={}, itemsep=\linesep, parsep=0pt, topsep=3pt]}
+\newcommand{\resumeLineListEnd}{\end{itemize}}
+% Skills sit flush, one line each, as in the template
+\newcommand{\resumeSkillListStart}{\begin{itemize}[leftmargin=0.15in, label={}, itemsep=0pt, parsep=0pt, topsep=3pt]}
+\newcommand{\resumeSkillListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}[topsep=1pt, itemsep=0pt]}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-3pt}}
+
+%===============================================================================
+\begin{document}
+
+%--------------------- HEADING -------------------------------------------------
+\begin{center}
+    {\LARGE \textbf{Sohum Mehta}} \\ \vspace{3pt}
+    \small informsohum [at] gmail [dot] com $|$ smehta [at] imsa [dot] edu $|$ +1 (309)-319-9001 $|$
+    \href{https://sohmeh.github.io/}{\underline{sohmeh.github.io}}
+\end{center}
+\vspace{-6pt}
+
+%--------------------- EDUCATION -----------------------------------------------
+\section{Education}
+\resumeSubHeadingListStart
+
+  \resumeEdu
+    {University of Pennsylvania}{Philadelphia, PA}
+    {Cognitive Science \& Computer Science (BA); Minor: Statistics and Data Science (Wharton)}{Incoming}
+
+  \resumeEdu
+    {Illinois Mathematics and Science Academy}{Aurora, IL}
+    {High School Diploma $|$ GPA: 3.98/4.00 (Unweighted)}{Expected May 2026}
+    \resumeItemListStart
+      \resumeItem{\textbf{Relevant Coursework}: Machine Learning, OOP, BC Calculus 1/2/3, Differential Equations, Neuroscience}
+    \resumeItemListEnd
+
+\resumeSubHeadingListEnd
+
+%--------------------- EXPERIENCE ----------------------------------------------
+\section{Experience}
+\resumeSubHeadingListStart
+
+  \resumeEntry{Google Quantum AI}{Explainable AI Student Research Intern}{06/2025 -- Present}
+    \resumeItemListStart
+      \resumeItem{Research variational quantum algorithms (\textbf{VQE/VQC}) and explainable AI under Software Lead mentorship}
+      \resumeItem{Built reproducible hybrid \textbf{QML} pipelines; benchmarks informed internal research directions}
+      \resumeItem{Accepted at \textbf{IEEE/ACM AI-ML Systems} (Quantum Track), \textbf{ML4PS @ NeurIPS 2025}, and \textbf{YQIS 2025}}
+    \resumeItemListEnd
+
+  \resumeEntry{Wedge (YC S25)}{Internal Project Fellow, Software Engineering \& Research}{08/2025}
+    \resumeItemListStart
+      \resumeItem{Only high-school operator selected for this \textbf{YC-backed fellowship (top $<$1\%)}, with undergrad/grad teams}
+      \resumeItem{Led applied-AI and workflow-automation work in Edge Consulting for \textbf{major hospital systems}}
+      \resumeItem{Bridged prototypes to client-ready solutions with SWE/research teams; peers billed up to \textbf{\$180/hr}}
+    \resumeItemListEnd
+
+  \resumeEntry{Winter Lab, Northwestern (Feinberg)}{Bioinformatics Research Intern}{06/2025 -- 09/2025}
+    \resumeItemListStart
+      \resumeItem{Engineered a reusable \textbf{single-cell RNA-seq web app} for lab-wide analysis of immune-cell gene programs}
+      \resumeItem{Led biomarker discovery across inflammatory disease datasets; immunologists validated signals}
+      \resumeItem{First-author on the resulting \textbf{ACM-BCB 2025} proceedings paper (poster presentation)}
+    \resumeItemListEnd
+
+  \resumeEntry{Carnegie Mellon University}{Computational Neurolinguistics Student Researcher}{09/2024 -- 05/2025}
+    \resumeItemListStart
+      \resumeItem{Modeled lexical retrieval from \textbf{EEG} and reaction-time data across picture vs.\ word processing}
+      \resumeItem{\textbf{National JSHS Finalist} (top $\sim$3\%, \$1,000); oral presentation accepted at Springer Brain Informatics}
+      \resumeItem{Built Python notebooks and regression workflows that generalized across datasets and stimuli types}
+    \resumeItemListEnd
+
+\resumeSubHeadingListEnd
+
+%--------------------- SELECTED PUBLICATIONS -----------------------------------
+\section{Selected Publications}
+\resumeLineListStart
+  % TabFaith also appears below as a project. Here it functions only as the formal citation.
+  \resumePub{TabFaith: Benchmarking and Improving Structural Faithfulness in LLM Table Summarization}{ACL SURGeLLM 2026 (Oral)}
+  \resumePub{Energy Landscapes of Truthfulness in LLM Attention}{ICLR 2026 NFAM}
+  \resumePub{Prompt Genotyping: Quantifying the Evaluation Gap Between Synthetic Benchmarks and Real LLM Performance}{NeurIPS 2025 LLM Eval}
+  \resumePub{Cryptographic Fingerprinting for Medical AI}{NeurIPS 2025 Lock-LLM}
+  \resumePub{Cell-Type-Aware Single-Cell ML Reveals Biomarkers for Sarcoidosis Prognosis and CBD Differentiation}{ACM-BCB 2025}
+\resumeLineListEnd
+
+%--------------------- PROJECTS & ACTIVITIES -----------------------------------
+\section{Projects \& Activities}
+\resumeSubHeadingListStart
+
+  % Intentional dual placement: the publication line gives the credential;
+  % this entry shows the technical work and research contribution.
+  \resumeEntry{TabFaith}{Python, LLM Evaluation, NLI, ToTTo, Data Annotation}{2025 -- 2026}
+    \resumeItemListStart
+      \resumeItem{Co-created a \textbf{2,400-example benchmark} for factual errors in LLM-generated table summaries}
+      \resumeItem{Co-developed a \textbf{structure-aware faithfulness metric} and training-free pipeline to identify and repair errors}
+      \resumeItem{Published at \textbf{ACL SURGeLLM 2026}; selected as a \textbf{top-six oral paper}}
+    \resumeItemListEnd
+
+  \resumeEntry{Promptonium}{Next.js, TypeScript, LLM APIs, Evaluation Pipelines, Vercel}{06/2025 -- 09/2025}
+    \resumeItemListStart
+      \resumeItem{Research-backed platform for \textbf{prompt genotyping}: mapping human intent to measurable LLM behavior}
+      \resumeItem{\textbf{Microsoft-supported (\$1K)}; framework cited by Carnegie Mellon University and Microsoft}
+      \resumeItem{Shipped an educational prompting tool on the framework; used by PhD researchers}
+    \resumeItemListEnd
+
+  \resumeEntry{Pay it Forward (PiF) Science}{Co-Founder \& Co-President, 501(c)(3) Nonprofit}{11/2023 -- Present}
+    \resumeItemListStart
+      \resumeItem{Democratized STEM access for \textbf{3,000+ students} through weekly workshops and learning tools}
+      \resumeItem{Recruited and led \textbf{$\sim$70 advisors}; built \textbf{9 international NGO partnerships} to expand programming}
+      \resumeItem{Sustained by a \textbf{Google Ads Grant ($\sim$\$120K/yr)}, scaling multi-site delivery and campaigns}
+    \resumeItemListEnd
+
+  %-----------------------------------------------------------------------------
+  %  ROOM FOR 2-3 MORE ENTRIES -- uncomment a block below and fill it in.
+  %  Candidates from your own material: AAAI-26 Program Committee,
+  %  IMSA LEAD, Chess.
+  %-----------------------------------------------------------------------------
+  %
+  % \resumeEntry{Project or Activity Name}{Role, or the tech stack}{MM/YYYY -- MM/YYYY}
+  %   \resumeItemListStart
+  %     \resumeItem{What it is, in one line}
+  %     \resumeItem{What you built or led, with a number in it}
+  %     \resumeItem{Outcome: users, acceptance, award, scale}
+  %   \resumeItemListEnd
+  %
+  % \resumeEntry{Project or Activity Name}{Role, or the tech stack}{MM/YYYY -- MM/YYYY}
+  %   \resumeItemListStart
+  %     \resumeItem{What it is, in one line}
+  %     \resumeItem{What you built or led, with a number in it}
+  %     \resumeItem{Outcome: users, acceptance, award, scale}
+  %   \resumeItemListEnd
+  %
+  % \resumeEntry{Project or Activity Name}{Role, or the tech stack}{MM/YYYY -- MM/YYYY}
+  %   \resumeItemListStart
+  %     \resumeItem{What it is, in one line}
+  %     \resumeItem{What you built or led, with a number in it}
+  %     \resumeItem{Outcome: users, acceptance, award, scale}
+  %   \resumeItemListEnd
+
+\resumeSubHeadingListEnd
+
+%--------------------- TECHNICAL SKILLS ----------------------------------------
+\section{Technical Skills}
+\resumeSkillListStart
+  \resumeSkill{Languages}{Python, TypeScript, JavaScript, Java, R, MATLAB, HTML/CSS}
+  \resumeSkill{Frameworks}{PyTorch, TensorFlow/Keras, scikit-learn, Hugging Face, Flask, React, Next.js, Cirq}
+  \resumeSkill{Developer Tools}{Git, LaTeX, Vercel, REST APIs, Jupyter, Microsoft Office 365}
+  \resumeSkill{Concepts}{Explainable AI, Quantum ML, NLP, Computational Neuroscience, Bioinformatics, LLM Evaluation}
+\resumeSkillListEnd
+
+\end{document}
