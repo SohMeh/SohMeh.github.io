@@ -155,6 +155,14 @@
     .skill-group h3 { margin-bottom: 13px; font-family: "DM Sans", sans-serif; font-size: 13px; font-weight: 600; }
     .skill-list span { padding: 4px 9px; border: 1px solid var(--line); border-radius: 6px; font-size: 11px; color: var(--body); }
 
+    .involvement { padding: 22px 10px; border-top: 1px solid var(--line); border-radius: 9px; margin: 0 -10px; transition: background .18s; }
+    .involvement:first-of-type { border-top: 0; }
+    .involvement:hover { background: rgba(255,255,255,.22); }
+    .involvement-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; }
+    .involvement-role { margin: 4px 0 0; color: var(--accent); font: 500 11px/1.5 "JetBrains Mono", monospace; }
+    .involvement-label { flex: 0 0 auto; padding-top: 3px; color: var(--muted); font-size: 9px; letter-spacing: .1em; text-transform: uppercase; }
+    .involvement-summary { max-width: 720px; margin: 10px 0 12px; font-size: 14px; }
+
     .recognition-grid { display: grid; grid-template-columns: repeat(2, 1fr); column-gap: 30px; }
     .award { display: grid; grid-template-columns: 1fr auto; gap: 14px; padding: 13px 0; border-bottom: 1px dashed var(--line); font-size: 13px; }
     .award span:first-child { color: var(--ink); }
@@ -207,6 +215,7 @@
       footer { padding-bottom: 45px; }
     }
     @media (max-width: 480px) {
+      #net { left: calc((100vw - 100%) / -2); right: calc((100vw - 100%) / -2); }
       .hero-grid { align-items: flex-start; }
       .hero-copy { flex-basis: 100%; }
       .project-thumb { width: 58px; height: 58px; }
@@ -228,9 +237,10 @@
   <div id="cursor-ring" aria-hidden="true"></div>
   <div id="cursor-dot" aria-hidden="true"></div>
   <nav class="rail" aria-label="Featured sections">
-    <a href="#projects" data-section="projects"><span class="rail-dot"></span><span class="rail-label">Projects</span></a>
-    <a href="#research" data-section="research"><span class="rail-dot"></span><span class="rail-label">Research</span></a>
-    <a href="#awards" data-section="awards"><span class="rail-dot"></span><span class="rail-label">Awards</span></a>
+    <a href="#projects" data-section="projects" aria-label="Projects"><span class="rail-dot"></span><span class="rail-label">Projects</span></a>
+    <a href="#research" data-section="research" aria-label="Research"><span class="rail-dot"></span><span class="rail-label">Research</span></a>
+    <a href="#involvement" data-section="involvement" aria-label="Involvement"><span class="rail-dot"></span><span class="rail-label">Involvement</span></a>
+    <a href="#awards" data-section="awards" aria-label="Awards"><span class="rail-dot"></span><span class="rail-label">Awards</span></a>
   </nav>
 
   <main class="shell">
@@ -315,6 +325,26 @@
       </div>
     </section>
 
+    <section id="involvement" class="reveal">
+      <div class="section-head"><h2>Involvement</h2><span class="kicker mono">Community + learning</span></div>
+      <article class="involvement">
+        <div class="involvement-head">
+          <div><h3>Pay it Forward (PiF) Science</h3><p class="involvement-role">Former Co-Founder &amp; Co-President · 501(c)(3) nonprofit</p></div>
+          <span class="involvement-label mono">Community STEM</span>
+        </div>
+        <p class="involvement-summary">Co-founded and co-led a nonprofit that expanded weekly STEM workshops and learning tools to more than 3,000 students. Recruited roughly 70 advisors, built nine international NGO partnerships, and scaled multi-site programming with support from a Google Ads Grant (~$120K/year).</p>
+        <div class="tag-list"><span class="tag">3,000+ students</span><span class="tag">~70 advisors</span><span class="tag">9 NGO partners</span></div>
+      </article>
+      <article class="involvement">
+        <div class="involvement-head">
+          <div><h3>Independent Study in Jainism</h3><p class="involvement-role">Arihanta Institute · Learning Collective</p></div>
+          <span class="involvement-label mono">Ethics + philosophy</span>
+        </div>
+        <p class="involvement-summary">Awarded a full-term scholarship to join a graduate-level learning collective as one of its youngest learners, studying Jain ethics and philosophy and bringing frameworks of truth-seeking and non-attachment into research leadership and team culture.</p>
+        <div class="tag-list"><span class="tag">Jain ethics</span><span class="tag">philosophy</span><span class="tag">research leadership</span></div>
+      </article>
+    </section>
+
     <section id="awards" class="reveal">
       <div class="section-head"><h2>Recognition</h2><span class="kicker mono">Selected honors</span></div>
       <div class="recognition-grid">
@@ -329,7 +359,7 @@
       </div>
     </section>
 
-    <footer><span>Research should explain something and make something possible.</span><span>Last updated July 2026 · <a href="mailto:informsohum@gmail.com">email me</a></span></footer>
+    <footer><span>Research should explain something and make something possible.</span><span>Last updated August 2026 · <a href="mailto:informsohum@gmail.com">email me</a></span></footer>
   </main>
 
   <script>
@@ -369,7 +399,7 @@
 
     function sizeConstellation() {
       pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
-      canvasWidth = hero.clientWidth + 92;
+      canvasWidth = window.innerWidth <= 480 ? window.innerWidth : hero.clientWidth + 92;
       canvasHeight = hero.clientHeight + 42;
       canvas.width = canvasWidth * pixelRatio;
       canvas.height = canvasHeight * pixelRatio;
