@@ -118,6 +118,11 @@
     .project:hover { background: rgba(255,255,255,.22); }
     .project-thumb { width: 76px; height: 76px; flex: 0 0 auto; display: grid; place-items: center; border-radius: 12px; color: var(--muted); background: var(--accent-soft); }
     .project-thumb svg { width: 27px; height: 27px; }
+    .project-thumb.logo { overflow: hidden; background: none; border: 1px solid var(--line); }
+    .project-thumb.logo img { width: 100%; height: 100%; display: block; object-fit: cover; }
+    .project-links { display: flex; flex-wrap: wrap; gap: 4px 16px; margin: -2px 0 12px; font-size: 13px; }
+    .project-links a { color: var(--accent); font-weight: 500; text-decoration: none; }
+    .project-links a:hover, .project-links a:focus-visible { text-decoration: underline; text-underline-offset: 3px; }
     .project-body { min-width: 0; }
     .project-title-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
     .project-title-row h3 { font-size: 20px; }
@@ -288,12 +293,12 @@
     <section id="projects" class="reveal">
       <div class="section-head"><h2>Projects</h2><span class="kicker mono">Built to answer a question</span></div>
       <article class="project">
-        <div class="project-thumb" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="8.5" cy="10" r="1.5" fill="currentColor"/><path d="M4 17l5-5 3.5 3.5L16 11l4 4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></div>
-        <div class="project-body"><div class="project-title-row"><h3 class="scramble">Foto</h3><a class="project-link" href="https://www.foto-ai.store" target="_blank" rel="noreferrer" aria-label="Open Foto">↗</a><span class="project-status">$100K in-kind support from Y Combinator</span></div><p>A Mac menu-bar app that turns screenshots into actions. It reads each screenshot on the device, uses Claude to work out what you saved it for, checks your calendars locally, and adds it in one click with an undo. I’m building it with my co-founders in the WUEC Incubator.</p><div class="tag-list"><span class="tag">Electron</span><span class="tag">React</span><span class="tag">TypeScript</span><span class="tag">Swift</span><span class="tag">Apple Vision</span><span class="tag">Claude API</span></div></div>
+        <div class="project-thumb logo" aria-hidden="true"><img src="./foto-logo.svg" alt="" width="76" height="76"></div>
+        <div class="project-body"><div class="project-title-row"><h3 class="scramble">Foto</h3><a class="project-link" href="https://www.foto-ai.store" target="_blank" rel="noreferrer" aria-label="Open Foto">↗</a><span class="project-status">$100K in-kind support from Y Combinator</span></div><p>Your screenshots, turned into action. Foto is a Mac menu-bar app that reads each new screenshot on your device and uses Claude to work out what you saved it for. It checks your calendars locally, then adds the event in one click with an undo. Foto is free on Mac today, and an iPhone app is next. I’m building it with my co-founders in the WUEC Incubator.</p><div class="project-links"><a href="https://www.foto-ai.store" target="_blank" rel="noreferrer">Website ↗</a><a href="./foto-pitch.pdf" target="_blank" rel="noreferrer">Pitch deck (PDF) ↗</a><a href="https://www.foto-ai.store/#download" target="_blank" rel="noreferrer">Download for Mac ↗</a></div><div class="tag-list"><span class="tag">Electron</span><span class="tag">React</span><span class="tag">TypeScript</span><span class="tag">Swift</span><span class="tag">Apple Vision</span><span class="tag">Claude API</span></div></div>
       </article>
       <article class="project">
-        <div class="project-thumb" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="8.5" cy="10" r="1.5" fill="currentColor"/><path d="M4 17l5-5 3.5 3.5L16 11l4 4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></div>
-        <div class="project-body"><div class="project-title-row"><h3 class="scramble">Promptonium</h3><a class="project-link" href="https://promptonium.vercel.app/" target="_blank" rel="noreferrer" aria-label="Open Promptonium">↗</a><span class="project-status">Microsoft-supported research platform</span></div><p>A research-backed platform for prompt genotyping: mapping human intent to measurable LLM behavior and exposing where synthetic benchmarks diverge from real performance.</p><div class="tag-list"><span class="tag">Next.js</span><span class="tag">TypeScript</span><span class="tag">LLM APIs</span><span class="tag">evaluation pipelines</span><span class="tag">Vercel</span></div></div>
+        <div class="project-thumb logo" aria-hidden="true"><img src="./promptonium-logo.png" alt="" width="76" height="76"></div>
+        <div class="project-body"><div class="project-title-row"><h3 class="scramble">Promptonium</h3><a class="project-link" href="https://promptonium.vercel.app/" target="_blank" rel="noreferrer" aria-label="Open Promptonium">↗</a><span class="project-status">Microsoft-supported research platform</span></div><p>A research-backed platform for prompt genotyping: mapping human intent to measurable LLM behavior and exposing where synthetic benchmarks diverge from real performance.</p><div class="project-links"><a href="https://promptonium.vercel.app/" target="_blank" rel="noreferrer">Website ↗</a><a href="https://openreview.net/forum?id=WCNAcIKREG" target="_blank" rel="noreferrer">Prompt Genotyping paper ↗</a></div><div class="tag-list"><span class="tag">Next.js</span><span class="tag">TypeScript</span><span class="tag">LLM APIs</span><span class="tag">evaluation pipelines</span><span class="tag">Vercel</span></div></div>
       </article>
     </section>
 
@@ -398,7 +403,7 @@
       </div>
     </section>
 
-    <footer><span>Research should explain something and make something possible.</span><span>Last updated October 2026 · <a href="mailto:informsohum@gmail.com">email me</a></span></footer>
+    <footer><span>Research should explain something and make something possible.</span><span>Last updated November 2026 · <a href="mailto:informsohum@gmail.com">email me</a></span></footer>
   </main>
 
   <script>
